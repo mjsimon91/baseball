@@ -2,13 +2,22 @@ import React, { Component } from 'react'
 import API from "../utils/API"
 import moment from 'moment'
 
+const TransactionTable = props => (
+    <tr>
+        <td>{props.transaction.player}</td>
+        <td>{props.transaction.team}</td>
+        <td>{props.transaction.note}</td>
+        <td>{props.transaction.type}</td>
+    </tr>
+)
 
 class MlbTransactions extends Component {
 
   // Setting the state to get the search results
-    state = {
-    transactions: []
-    }
+  constructor(props) {
+    super(props);
+    this.state = {transactions: []};
+}
 
     // Search Transactions
     searchTransactions = () => {
@@ -23,7 +32,7 @@ class MlbTransactions extends Component {
     API.searchMLB(yesterday, today)
         .then(res => {
         this.setState({
-            transactions: res.data
+            transactions: res.data.transaction_all.queryResults.row
         });
         });
     };
@@ -33,15 +42,37 @@ class MlbTransactions extends Component {
         this.searchTransactions()
     }
 
+    // Creating afunction to populate the todo table with transactions
+    transactionList() {
+        return this.state.transactions.map(function(currentTransaction, i) {
+            return <TransactionTable transaction={currentTransaction} key={i} />;
+        });
+    }
+    
+
+    
+
     render() {
         return(
-            <div>
-              <h1>Hello World</h1>
+            <div className = "container">
+                <table className="table table-striped" style={{ marginTop: 20 }} >
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Team</th>
+                            <th>Note</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.transactionList() }
+                    </tbody>
+                </table>
 
             </div>
         )
     }
 
-}
+ }
 
 export default MlbTransactions;
