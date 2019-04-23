@@ -4,12 +4,14 @@ import moment from 'moment'
 
 const TransactionTable = props => (
     <tr>
+        <td>{moment(props.transaction.trans_date).format('LLL')}</td>
         <td>{props.transaction.player}</td>
         <td>{props.transaction.team}</td>
         <td>{props.transaction.note}</td>
         <td>{props.transaction.type}</td>
     </tr>
 )
+
 
 
 class MlbTransactions extends Component {
@@ -36,6 +38,7 @@ class MlbTransactions extends Component {
             transactions: res.data.transaction_all.queryResults.row
         });
 
+    
         //Ger Unique transaction types to use as tabs
         const transactionTypes =[...new Set(this.state.transactions.map(x => x.type))]
         console.log(transactionTypes)
