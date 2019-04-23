@@ -11,6 +11,7 @@ const TransactionTable = props => (
     </tr>
 )
 
+
 class MlbTransactions extends Component {
 
   // Setting the state to get the search results
@@ -34,6 +35,11 @@ class MlbTransactions extends Component {
         this.setState({
             transactions: res.data.transaction_all.queryResults.row
         });
+
+        //Ger Unique transaction types to use as tabs
+        const transactionTypes =[...new Set(this.state.transactions.map(x => x.type))]
+        console.log(transactionTypes)
+       
         });
     };
 
