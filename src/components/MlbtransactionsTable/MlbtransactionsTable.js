@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import API from "../utils/API"
+import React, { Component } from 'react';
+import API from "../../utils/API"
 import moment from 'moment'
 
 const TransactionTable = props => (
@@ -14,12 +14,15 @@ const TransactionTable = props => (
 
 
 
-class MlbTransactions extends Component {
+class MlbTransactionsTable extends Component {
 
   // Setting the state to get the search results
   constructor(props) {
     super(props);
-    this.state = {transactions: []};
+    this.state = {
+        transactions: [],
+        transactionTypes: []
+    };
 }
 
     // Search Transactions
@@ -32,18 +35,17 @@ class MlbTransactions extends Component {
         console.log("yesterday", yesterday)
         console.log("today",today)
 
-    API.searchMLB(yesterday, today)
-        .then(res => {
-        this.setState({
-            transactions: res.data.transaction_all.queryResults.row
-        });
-
-    
-        //Ger Unique transaction types to use as tabs
-        const transactionTypes =[...new Set(this.state.transactions.map(x => x.type))]
-        console.log(transactionTypes)
-       
-        });
+        API.searchMLB(yesterday, today)
+            .then(res => {
+                //Ger Unique transaction types to use as tabs
+                const transactionTypes =[...new Set(res.data.transaction_all.queryResults.row.map(x => x.type))]
+                console.log(transactionTypes)
+            
+                this.setState({
+                    transactions: res.data.transaction_all.queryResults.row,
+                    transactionTypes: transactionTypes
+                });
+            });
     };
 
     // On page load, search transactions
@@ -84,4 +86,4 @@ class MlbTransactions extends Component {
 
  }
 
-export default MlbTransactions;
+export default MlbTransactionsTable

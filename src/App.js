@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import MlbTransactions from "./components/Mlbtransactions"
+import TransactionsPage from "./components/TransactionsPage"
 import 'typeface-roboto';
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
           <h2>MLB Transactions</h2>
         </div>
 
-        <Route path="/" exact component={MlbTransactions} />
+        <Route path="/" exact component={TransactionsPage} />
       </Router>
     );
   }
