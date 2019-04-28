@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import API from "../../utils/API"
 import moment from 'moment'
 import MlbTransactionsTable from "../MlbtransactionsTable"
+import TransactionCard from '../TransactionCard'
 
 const TransactionTable = props => (
     <tr>
@@ -31,6 +32,7 @@ class TransactionsPage extends Component {
         selectedArray: [],
         recalledArray: [],
         signedAsaFreeAgent: [],
+        claimedOffWaivers: [],
         // Create an array for anything that doesnt fit into the above
         otherTransactionTypeArray : []
     };
@@ -58,6 +60,7 @@ class TransactionsPage extends Component {
             let selectedArrayTemp = []
             let recalledArrayTemp = []
             let signedAsaFreeAgenTemp =[]
+            let claimedOffWaiversTemp = []
 
             // Create an array for anything that doesnt fit into the above
             let otherTransactionTypeArrayTemp = []
@@ -138,6 +141,13 @@ class TransactionsPage extends Component {
                 };
              }
 
+             // if the transaction type is "Claimed Off Waivers" add to the claimedOffWaiversArray
+             for (let index = 0; index < transactionsResponse.length; index++) {
+                if (transactionsResponse[index].type != "Claimed Off Waivers"){
+                    claimedOffWaiversTemp.push(transactionsResponse[index])
+                };
+             }             
+
             this.setState({
                 transactions: res.data.transaction_all.queryResults.row,
                 statusChangedArray: statusChangedArrayTemp,
@@ -149,6 +159,7 @@ class TransactionsPage extends Component {
                 selectedArray: selectedArrayTemp,
                 recalledArray: recalledArrayTemp,
                 signedAsaFreeAgent: signedAsaFreeAgenTemp,
+                claimedOffWaivers: claimedOffWaiversTemp,
                 otherTransactionTypeArray : otherTransactionTypeArrayTemp
             });
         });
@@ -174,30 +185,116 @@ class TransactionsPage extends Component {
     
 
     render() {
-        return(
+        // Conditional rendering of components
+        let isStatusChangedArray = this.state.statusChangedArray.length;
+        let isAssignedArray = this.state.assignedArray.length;
+        let isDesignatedForAssignmentArray = this.state.designatedForAssignmentArray.length;
+        let isOptionedArray = this.state.optionedArray.length;
+        let isOutrightedArray = this.state.outrightedArray.length;
+        let isTradeArray = this.state.tradeArray.length;
+        let isSelectedArray = this.state.selectedArray.length;
+        let isRecalledArray = this.state.recalledArray.length;
+        let isSignedAsaFreeAgentArray = this.state.signedAsaFreeAgent.length;
+        let isClaimedOffWaivers = this.state.claimedOffWaivers.length;
+        let isOtherTransactionTypeArray = this.state.otherTransactionTypeArray.length;
 
-            <div className = "card">
-                <h5 className = "card-header">Hello</h5>
-                <div>
-                    <table className="table table-striped" style={{ marginTop: 20 }} >
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Team</th>
-                                <th>Note</th>
-                                <th>Type</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* { this.transactionList() } */}
-                        </tbody>
-                    </table>
-                </div>   
+        console.log(isSignedAsaFreeAgentArray)
+        
+        return(
+        
+        
+            <div className = 'container'>
+                
+                {/* Status Changed Component  */}
+                {isStatusChangedArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Status Changed'}
+                    />
+                )}
+            
+                {/* Assigned Component */}
+
+                {isAssignedArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Assigned'}
+                    />
+                )}
+                    
+                {/* designated for assignedment component */}
+                
+                {isDesignatedForAssignmentArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Designated for Assignment'}
+                    />
+                )}
+                
+                {/* Optioned Component */}
+                
+                {isOptionedArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Optioned'}
+                    />
+                )}
+
+                {/* Outrighted Component */}
+                {isOutrightedArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Outrighted'}
+                    />
+                )}
+
+                {/* Trade Component */}
+                
+                {isTradeArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Traded'}
+                    />
+                )}
+
+                {/* Selected Component */}
+                
+                {isSelectedArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Selected'}
+                    />
+                )}
+
+
+                {/* Recalled Component */}
+                
+                {isRecalledArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Called Up'}
+                    />
+                )}
+
+                {/* Signed as a free agent component */}
+
+                {isSignedAsaFreeAgentArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Signed as a Free Agent'}
+                    />
+                )}
+
+                {/* Signed as a free agent component */}
+                {isClaimedOffWaivers.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Claimed Off Waivers'}
+                    />
+                )}
+
+
+                {/* Other Component */}
+                {isOtherTransactionTypeArray.length === 0 ? (<div></div>) : (
+                    <TransactionCard 
+                        name = {'Other'}
+                    />
+                )}
+            
             </div>
            
         )
     }
-
  }
 
 export default TransactionsPage;
