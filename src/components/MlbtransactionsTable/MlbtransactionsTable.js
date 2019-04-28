@@ -65,21 +65,23 @@ class MlbTransactionsTable extends Component {
 
     render() {
         return(
-            <div className = "container">
-                <table className="table table-striped" style={{ marginTop: 20 }} >
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Team</th>
-                            <th>Note</th>
-                            <th>Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.transactionList() }
-                    </tbody>
-                </table>
-
+            <div className = "card">
+                <h5 className = "card-header">Hello</h5>
+                <div>
+                    <table className="table table-striped" style={{ marginTop: 20 }} >
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Team</th>
+                                <th>Note</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.transactionList() }
+                        </tbody>
+                    </table>
+                </div>   
             </div>
         )
     }
