@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
+import './TransactionCard.css'
 
 class TransactionCard extends Component {
+
     render() {
         return(
             <div>
-                <div className="card">
-                    <h5 className="card-header">{this.props.name}</h5>
+                <div className="card mb-3">
+                    <div>
+                        <h5 className="card-header">{this.props.name}</h5>
+                    </div>
+                    
                     <div className="card-body">
-                        <h5 className="card-title">Special title treatment</h5>
-                        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                        <div className = "row">
+                         {/* Loop through each transaction */}
+                         {this.props.transactions.map((transaction,i) => (
+                                <div key ={i} className = "col-xl-4 col-lg-4 col-md-6 col-sm-12 transactionCard">
+                                    <div className="card">
+                                        <div className="card-body transactionBody">
+                                            <h5 className="card-title">{transaction.name_display_first_last}</h5>
+                                            <h6 className="card-subtitle mb-2 text-muted">{transaction.effective_date}</h6>
+                                            <p className="card-text">{transaction.note}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                           
+
+                            
+
+                         ))}
+                         </div>
                     </div>
                 </div>  
             </div> 

@@ -136,14 +136,14 @@ class TransactionsPage extends Component {
 
             // if the transaction type does not equal the above add to the otherTransactionTypeArray
             for (let index = 0; index < transactionsResponse.length; index++) {
-                if (transactionsResponse[index].type != "Signed as Free Agent"){
+                if (transactionsResponse[index].type !== "Signed as Free Agent"){
                     signedAsaFreeAgenTemp.push(transactionsResponse[index])
                 };
              }
 
              // if the transaction type is "Claimed Off Waivers" add to the claimedOffWaiversArray
              for (let index = 0; index < transactionsResponse.length; index++) {
-                if (transactionsResponse[index].type != "Claimed Off Waivers"){
+                if (transactionsResponse[index].type !== "Claimed Off Waivers"){
                     claimedOffWaiversTemp.push(transactionsResponse[index])
                 };
              }             
@@ -198,7 +198,7 @@ class TransactionsPage extends Component {
         let isClaimedOffWaivers = this.state.claimedOffWaivers.length;
         let isOtherTransactionTypeArray = this.state.otherTransactionTypeArray.length;
 
-        console.log(isSignedAsaFreeAgentArray)
+        console.log("other", isOtherTransactionTypeArray)
         
         return(
         
@@ -206,88 +206,97 @@ class TransactionsPage extends Component {
             <div className = 'container'>
                 
                 {/* Status Changed Component  */}
-                {isStatusChangedArray.length === 0 ? (<div></div>) : (
+                {isStatusChangedArray === 0 ? (<div></div>) : (
                     <TransactionCard 
-                        name = {'Status Changed'}
+                        name = 'Status Changed'
+                        transactions = {this.state.statusChangedArray}
                     />
                 )}
             
-                {/* Assigned Component */}
-
-                {isAssignedArray.length === 0 ? (<div></div>) : (
+                {isAssignedArray === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Assigned'}
+                        transactions = {this.state.assignedArray}
                     />
                 )}
                     
                 {/* designated for assignedment component */}
                 
-                {isDesignatedForAssignmentArray.length === 0 ? (<div></div>) : (
+                {isDesignatedForAssignmentArray === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Designated for Assignment'}
+                        transactions = {this.state.designatedForAssignmentArray}
                     />
                 )}
                 
                 {/* Optioned Component */}
                 
-                {isOptionedArray.length === 0 ? (<div></div>) : (
+                {isOptionedArray === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Optioned'}
+                        transactions = {this.state.optionedArray}
                     />
                 )}
 
                 {/* Outrighted Component */}
-                {isOutrightedArray.length === 0 ? (<div></div>) : (
+                {isOutrightedArray === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Outrighted'}
+                        transactions = {this.state.outrightedArray}
                     />
                 )}
 
                 {/* Trade Component */}
                 
-                {isTradeArray.length === 0 ? (<div></div>) : (
+                {isTradeArray === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Traded'}
+                        transactions = {this.state.tradeArray}
                     />
                 )}
 
                 {/* Selected Component */}
                 
-                {isSelectedArray.length === 0 ? (<div></div>) : (
+                {isSelectedArray === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Selected'}
+                        transactions = {this.state.selectedArray}
                     />
                 )}
 
 
                 {/* Recalled Component */}
                 
-                {isRecalledArray.length === 0 ? (<div></div>) : (
+                {isRecalledArray === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Called Up'}
+                        transactions = {this.state.recalledArray}
                     />
                 )}
 
                 {/* Signed as a free agent component */}
 
-                {isSignedAsaFreeAgentArray.length === 0 ? (<div></div>) : (
+                {isSignedAsaFreeAgentArray=== 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Signed as a Free Agent'}
+                        transactions = {this.state.signedAsaFreeAgent}
                     />
                 )}
 
                 {/* Signed as a free agent component */}
-                {isClaimedOffWaivers.length === 0 ? (<div></div>) : (
+                {isClaimedOffWaivers === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Claimed Off Waivers'}
+                        transactions = {this.state.claimedOffWaivers}
                     />
                 )}
 
 
                 {/* Other Component */}
-                {isOtherTransactionTypeArray.length === 0 ? (<div></div>) : (
+                {isOtherTransactionTypeArray === 0 ? (<div></div>) : (
                     <TransactionCard 
                         name = {'Other'}
+                        transactions = {this.state.otherTransactionTypeArray}
                     />
                 )}
             
