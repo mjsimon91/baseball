@@ -6,3 +6,12 @@
 .transactionCard {
     margin-bottom:10px 
 }
+
+.mlbLogo {
+    width:30px;
+    height: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
