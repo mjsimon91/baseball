@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './TransactionCard.css'
+import moment from 'moment'
 
 class TransactionCard extends Component {
     render() {
@@ -19,7 +20,7 @@ class TransactionCard extends Component {
                                         <div className="card-body transactionBody">
                                             <img className = "mlbLogo" src= {transaction.team_id ? (`https://www.mlbstatic.com/team-logos/${transaction.team_id}.svg`): ("")} alt=""/>
                                             <h5 className="card-title">{transaction.name_display_first_last}</h5>    
-                                            <h6 className="card-subtitle mb-2 text-muted">{transaction.effective_date}</h6>
+                                            <h6 className="card-subtitle mb-2 text-muted">{moment(transaction.effective_date).format('MMMM Do YYYY')}</h6>
                                             <p className="card-text">{transaction.note}</p>
                                         </div>
                                     </div>

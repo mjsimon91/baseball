@@ -85,42 +85,42 @@ class TransactionsPage extends Component {
                 };
              }
             
-             // if the transaction type is "Status Changed" add to the designatedForAssignmentArray
+             // if the transaction type is "Designated for Assignment" add to the designatedForAssignmentArray
              for (let index = 0; index < transactionsResponse.length; index++) {
                 if (transactionsResponse[index].type === "Designated for Assignment"){
                     designatedForAssignmentArrayTemp.push(transactionsResponse[index])
                 };
              }
 
-            // if the transaction type is "Status Changed" add to the optionedArray
+            // if the transaction type is "Optioned" add to the optionedArray
             for (let index = 0; index < transactionsResponse.length; index++) {
                 if (transactionsResponse[index].type === "Optioned"){
                     optionedArrayTemp.push(transactionsResponse[index])
                 };
              }
             
-            // if the transaction type is "Status Changed" add to the outrightedArray
+            // if the transaction type is "Outrighted" add to the outrightedArray
             for (let index = 0; index < transactionsResponse.length; index++) {
                 if (transactionsResponse[index].type === "Outrighted"){
                     outrightedArrayTemp.push(transactionsResponse[index])
                 };
              }
 
-            // if the transaction type is "Status Changed" add to the tradeArray
+            // if the transaction type is "Trade" add to the tradeArray
             for (let index = 0; index < transactionsResponse.length; index++) {
                 if (transactionsResponse[index].type === "Trade"){
                     tradeArrayTemp.push(transactionsResponse[index])
                 };
              }
             
-            // if the transaction type is "Status Changed" add to the selectedArray
+            // if the transaction type is "Selected" add to the selectedArray
             for (let index = 0; index < transactionsResponse.length; index++) {
                 if (transactionsResponse[index].type === "Selected"){
                     selectedArrayTemp.push(transactionsResponse[index])
                 };
              }
             
-            // if the transaction type is "Status Changed" add to the recalledArray
+            // if the transaction type is "Recalled" add to the recalledArray
             for (let index = 0; index < transactionsResponse.length; index++) {
                 if (transactionsResponse[index].type === "Recalled"){
                     recalledArrayTemp.push(transactionsResponse[index])
@@ -136,14 +136,14 @@ class TransactionsPage extends Component {
 
             // if the transaction type does not equal the above add to the otherTransactionTypeArray
             for (let index = 0; index < transactionsResponse.length; index++) {
-                if (transactionsResponse[index].type !== "Signed as Free Agent"){
-                    signedAsaFreeAgenTemp.push(transactionsResponse[index])
+                if (transactionsResponse[index].type !== "Signed as Free Agent" && transactionsResponse[index].type !== "Status Change" && transactionsResponse[index].type !== "Assigned" && transactionsResponse[index].type !== "Designated for Assignment" && transactionsResponse[index].type !== "Optioned" && transactionsResponse[index].type !== "Outrighted" && transactionsResponse[index].type !== "Trade" && transactionsResponse[index].type !== "Selected" && transactionsResponse[index].type !== "Recalled"){
+                    otherTransactionTypeArrayTemp.push(transactionsResponse[index])
                 };
              }
 
              // if the transaction type is "Claimed Off Waivers" add to the claimedOffWaiversArray
              for (let index = 0; index < transactionsResponse.length; index++) {
-                if (transactionsResponse[index].type !== "Claimed Off Waivers"){
+                if (transactionsResponse[index].type === "Claimed Off Waivers"){
                     claimedOffWaiversTemp.push(transactionsResponse[index])
                 };
              }             
