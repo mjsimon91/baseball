@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap'
 
-import TransactionsPage from "./components/TransactionsPage"
+import TransactionsPage from './pages/TransactionsPage'
 import 'typeface-roboto';
+import "./components/Navbar"
+import Navbar from './components/Navbar';
+import SearchResultsPage from './pages/SearchResultsPage';
+import PlayerSummaryPage from './pages/PlayerSummaryPage';
 
 class App extends Component {
 
@@ -13,10 +18,13 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <h2>MLB Transactions</h2>
+         <Navbar/>
         </div>
 
-        <Route path="/" exact component={TransactionsPage} />
+        <Route exact path="/" component={TransactionsPage} />
+        <Route path="/search" component = {SearchResultsPage} />
+        <Route path = "/player" component = {PlayerSummaryPage}/>
+
       </Router>
     );
   }

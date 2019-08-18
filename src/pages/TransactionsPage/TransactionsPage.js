@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import API from "../../utils/API"
 import moment from 'moment'
-import MlbTransactionsTable from "../MlbtransactionsTable"
-import TransactionCard from '../TransactionCard'
+import MlbTransactionsTable from "../../components/MlbtransactionsTable"
+import TransactionCard from '../../components/TransactionCard'
 
 const TransactionTable = props => (
     <tr>
