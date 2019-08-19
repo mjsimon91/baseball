@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 import './PlayerTable.css'
 
 class PlayerTable extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            searchResults:[]
+        };
+    };
+
+
 
     render(){
-        let playerArray = []
-        const playerSearch = this.props.players
+        
 
-        // If only a single player is returned, we will need to push them into an array so we can map through the component
-        // Otherwise, map through the component with the array of players
-
-        if (Array.isArray(playerSearch)) {
             return(
                 <div className = "container">
                     <table className="table table-hover">
@@ -52,32 +55,7 @@ class PlayerTable extends Component {
                     </table>
                 </div>
             )
-        } else {
-            
-            playerArray.push(playerSearch)
-            
-            return(
-                <div className = "container">
-                    <table className="table table-hover">
-                        <tbody>
-    
-                            {playerArray.map(player => (
-    
-                                <tr key = {player.player_id} className = 'tableRow'>
-                                    <th scope="row">
-                                    <img className = "mlbLogo" src= {player.team_id ? (`https://www.mlbstatic.com/team-logos/${player.team_id}.svg`): ("")} alt=""/>
-                                    </th>
-                                    <td>{player.name_display_first_last}</td>
-                                    <td>{player.position}</td>
-                                </tr>
-                            ))}
-    
-                            
-                        </tbody>
-                    </table>
-                </div>
-            )
-        }
+        
 
 
         

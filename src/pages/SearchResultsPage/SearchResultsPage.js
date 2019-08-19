@@ -20,9 +20,23 @@ class SearchResultsPage extends Component {
         API.mlbPlayerSearch(query)
             .then(res =>{
                 const mlbPlayerResult = res.data.search_player_all.queryResults.row;
-                this.setState({
-                    searchResults: mlbPlayerResult
-                })
+
+                // Find out if this player is in an array, and if not, push them into an array
+                if(Array.isArray(mlbPlayerResult)){
+                    this.setState({
+                        searchResults: mlbPlayerResult
+                    })
+                } else {
+                    let playerArray =[]
+                    playerArray.push(mlbPlayerResult)
+                    this.setState({
+                        searchResults: playerArray
+                    })
+                  
+                }
+                
+                
+                
             }).catch(error => {
                 console.log(error)
             })

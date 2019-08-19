@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
 import PlayerInfoCard from '../../components/PlayerInfoCard'
+import PlayerStatsTable from '../../components/PlayerStatsTable'
 
 class PlayerSummaryPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            playerInfo: []
+            playerInfo: [],
+            activePlayerStats: []
         }
     }
 
@@ -15,11 +17,12 @@ class PlayerSummaryPage extends Component {
         const params = new URLSearchParams(window.location.search)
         const playerId = params.get("player")
         this.playerDetails(playerId)
+        this.playerStats(playerId)
     }
 
     // Use the API in order to go get information on that player
     playerDetails = playerId => {
-        const playerInfo =[]
+    
         API.mlbPlayerInfo(playerId)
         .then(res => {
             this.setState({
@@ -30,6 +33,17 @@ class PlayerSummaryPage extends Component {
     }
 
     // Use the API to to get stats for that player
+    playerStats = playerId => {
+        
+        API.mlbPlayerData(playerId)
+        .then(res =>{
+            this.setState({
+                activePlayerStats: res.data.sport_hitting_tm.queryResults.row
+            })
+        })
+        .catch(err => console.log(err))
+    }
+    
 
     // Allow to watch a player
 
@@ -46,6 +60,10 @@ class PlayerSummaryPage extends Component {
                <PlayerInfoCard
                playerBio = {this.state.playerInfo}
                />
+               <PlayerStatsTable 
+               playerStats = {this.state.activePlayerStats}
+               />
+               
             </div>
         )
     } 

@@ -14,6 +14,7 @@ const aaSportCode = "sport_code='aa'";
 const aSportCode = "sport_code='a'"
 const activePlayer = "&active_swY"
 const playerDetails = "/json/named.player_info.bam?"
+const mlbPlayerStats = "/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season=2019&player_id="
 
 
 
@@ -50,5 +51,10 @@ export default {
     // Search for a specific MLB player
     mlbPlayerInfo: function(playerId) {
         return axios.get(mlbHostUrl + playerDetails + mlbSportCode + "&player_id=" + playerId)
+    },
+
+    // only returning data for 2019 right now
+    mlbPlayerData:  function(playerId) {
+        return axios.get(mlbHostUrl + mlbPlayerStats + playerId)
     }
 }
