@@ -23,8 +23,7 @@ class Navbar extends Component {
 
     // Handle the Return/Enter key press
     returnKeyPress = event => {
-        var url = window.location.href
-        var newUrl = `${url}search?q=${this.state.search}`
+        var newUrl = `/search?q=${this.state.search}`
         if (event.key === 'Enter') {
             event.preventDefault();
         
