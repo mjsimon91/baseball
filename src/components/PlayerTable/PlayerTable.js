@@ -32,7 +32,7 @@ class PlayerTable extends Component {
                                         <Link 
                                             to={{
                                                 pathname: "/player",
-                                                search: `?player=${player.player_id}`
+                                                search: `?player=${player.player_id}&active=${player.active_sw}`
                                             }}
                                             style={{ textDecoration: 'none' }}
                                             className = 'playerButton'>

@@ -25,31 +25,34 @@ class PlayerStatstable extends Component {
                         </thead>
                         <tbody>
                             <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">{this.props.playerStats.season}</th>
                             <td>{this.props.playerStats.g}</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>{this.props.playerStats.h}</td>
+                            <td>{this.props.playerStats.hr}</td>
+                            <td>{this.props.playerStats.rbi}</td>
+                            <td>{this.props.playerStats.r}</td>
+                            <td>{this.props.playerStats.sb}</td>
+                            <td>{this.props.playerStats.cs}</td>
+                            <td>{this.props.playerStats.so}</td>
+                            <td>{this.props.playerStats.bb}</td>
+                            <td>{this.props.playerStats.obp}</td>
+                            <td>{this.props.playerStats.slg}</td>
+                            <td>{this.props.playerStats.avg}</td>
                             </tr>
                             <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                            <th scope="row">Career</th>
+                            <td>{this.props.careerBatter.g}</td>
+                            <td>{this.props.careerBatter.h}</td>
+                            <td>{this.props.careerBatter.hr}</td>
+                            <td>{this.props.careerBatter.rbi}</td>
+                            <td>{this.props.careerBatter.r}</td>
+                            <td>{this.props.careerBatter.sb}</td>
+                            <td>{this.props.careerBatter.cs}</td>
+                            <td>{this.props.careerBatter.so}</td>
+                            <td>{this.props.careerBatter.bb}</td>
+                            <td>{this.props.careerBatter.obp}</td>
+                            <td>{this.props.careerBatter.slg}</td>
+                            <td>{this.props.careerBatter.avg}</td>
                             </tr>
                         </tbody>
                  </table>

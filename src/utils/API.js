@@ -14,7 +14,11 @@ const aaSportCode = "sport_code='aa'";
 const aSportCode = "sport_code='a'"
 const activePlayer = "&active_swY"
 const playerDetails = "/json/named.player_info.bam?"
-const mlbPlayerStats = "/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season=2019&player_id="
+const activeMlbPlayerHittingStats = "/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&"
+const careerMlbPlayerHittingStats= "/json/named.sport_career_hitting.bam?league_list_id='mlb'&game_type='R'&player_id="
+const seasonMlbPitcherStats = "/json/named.sport_pitching_tm.bam?league_list_id='mlb'&game_type='R'&season="
+const careerMlbPitcherStats = "json/named.sport_career_pitching.bam?league_list_id='mlb'&game_type='R'&player_id="
+const teamsPlayedFor = "/json/named.player_teams.bam?player_id="
 
 
 
@@ -54,7 +58,24 @@ export default {
     },
 
     // only returning data for 2019 right now
-    mlbPlayerData:  function(playerId) {
-        return axios.get(mlbHostUrl + mlbPlayerStats + playerId)
+    seasonMlbBatter:  function(season, playerId) {
+        return axios.get(mlbHostUrl + activeMlbPlayerHittingStats +'season='+ season + '&player_id=' + playerId)
+    },
+
+    // Return career hitting stats for a non active player
+    careerMlbBatter: function(playerId){
+        return axios.get(mlbHostUrl + careerMlbPlayerHittingStats + playerId)
+    },
+
+    seasonMlbPitcher: function(season, playerId){
+        return axios.get(mlbHostUrl + seasonMlbPitcherStats + season + '&player_id=' + playerId)
+    },
+
+    careerMlbPitcher: function(playerId){
+        return axios.get(mlbHostUrl + careerMlbPitcherStats + playerId)
+    },
+
+    teamsPlayedFor: function(playerId){
+        return axios.get(mlbHostUrl + teamsPlayedFor + playerId)
     }
 }
