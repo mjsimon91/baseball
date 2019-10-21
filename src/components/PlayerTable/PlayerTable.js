@@ -6,15 +6,25 @@ class PlayerTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchResults:[]
+            searchResults:[],
+            searchResultsLength: 0
         };
     };
 
-
+    componentDidMount(){
+        // If there are no search results, show a message. If there are results, show the results
+        const resultsFound = this.props.players
+        const resultsFoundLength = resultsFound.length
+        this.setState({
+            searchResultsLength:resultsFoundLength
+        })
+    }
 
     render(){
         
-
+       
+        
+        if(this.state.searchResultsLength > 0){
             return(
                 <div className = "container">
                     <table className="table table-hover">
@@ -41,11 +51,7 @@ class PlayerTable extends Component {
                                     </td>
                                     <td>{player.position}</td>
                                  
-                                </tr>
-                            
-                                
-                                
-                                
+                                </tr>     
                               
                                 
                             ))}
@@ -55,9 +61,13 @@ class PlayerTable extends Component {
                     </table>
                 </div>
             )
-        
-
-
+        } else {
+            return(
+                <div className="container">
+                    <h1>No Results Found</h1>
+                </div>
+            )
+        }
         
     }   
 }
